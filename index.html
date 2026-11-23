@@ -72,7 +72,7 @@ header{flex-shrink:0;background:var(--card);border-bottom:1px solid var(--line);
 .sec .st{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:700;color:var(--ink2);padding:0 2px}
 .sec .st span{font-weight:500;color:var(--muted);font-size:12px}
 .tiles{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:8px}
-.tile{border:1.5px solid var(--line);background:#F8FAFD;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;position:relative;padding:8px;min-height:96px;transition:background .12s,border-color .12s}
+.tile{border:2px solid #6E9BE0;background:#F8FAFD;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;position:relative;padding:8px;min-height:96px;transition:background .12s,border-color .12s}
 .tile .kw{font-size:22px;font-weight:700;color:var(--ink);letter-spacing:-.3px}
 .tile .sub{font-size:12px;color:var(--muted)}
 .tile .ck{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:13px;border:1.5px solid #C3CEDD;background:#fff;display:flex;align-items:center;justify-content:center}
@@ -90,12 +90,12 @@ header{flex-shrink:0;background:var(--card);border-bottom:1px solid var(--line);
 .dot.n{background:#E3E8EF;border-color:#E3E8EF;color:#6B7A90;font-size:15px}
 .dot.next{border-color:var(--bl);border-width:2.5px;color:var(--bl-d)}
 .qb{border-radius:16px;border:1.5px solid var(--line);background:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
-.qb.ok{flex:1.6;min-height:84px;background:var(--bl);border-color:var(--bl);color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(43,103,201,.22)}
+.qpair{display:flex;gap:8px;flex:1;min-height:110px}
+.qb.ok{flex:1;background:var(--bl);border-color:var(--bl);color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(43,103,201,.22)}
 .qb.ok:active{background:var(--bl-d)}
-.qrow{display:flex;gap:8px;flex:1;min-height:56px}
-.qb.no{flex:1;font-size:19px;color:var(--ink2);background:#F8FAFD}
-.qb.no:active{background:var(--line2)}
-.qb.undo{flex:0 0 92px;font-size:13px;font-weight:500;color:var(--muted)}
+.qb.no{flex:1;background:#E5484D;border-color:#E5484D;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(229,72,77,.22)}
+.qb.no:active{background:#C93A3F}
+.qb.undo{height:52px;font-size:15px;font-weight:500;color:var(--ink2);flex-shrink:0}
 .qb.full{opacity:.4;box-shadow:none}
 
 /* 점수 */
@@ -270,9 +270,9 @@ function renderEval(list){
     var v=tr[k];
     h+='<span class="dot'+(v===1?' y':v===0?' n':(k===tr.length?' next':''))+'" aria-label="'+(k+1)+'번째 '+(v===1?'성공':v===0?'실패':'시도 전')+'">'+(v===1?'○':v===0?'✕':(k+1))+'</span>';
   }
-  h+='</div><button class="qb ok'+(full?' full':'')+'" id="okBtn">성공 +1</button>'+
-     '<div class="qrow"><button class="qb no'+(full?' full':'')+'" id="noBtn">실패</button>'+
-     '<button class="qb undo" id="undoBtn" aria-label="마지막 기록 되돌리기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 010 11H11"/></svg>되돌리기</button></div></div>';
+  h+='</div><div class="qpair"><button class="qb ok'+(full?' full':'')+'" id="okBtn">성공 +1</button>'+
+     '<button class="qb no'+(full?' full':'')+'" id="noBtn">실패</button></div>'+
+     '<button class="qb undo" id="undoBtn" aria-label="마지막 기록 되돌리기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 010 11H11"/></svg>되돌리기</button></div>';
   h+='</div>';
   h+='<div class="scores">'+
      '<div class="card sc"><div class="lb">질적평가<small>해냄 '+n+'개</small></div><div class="v">'+q+'<span>/30</span></div></div>'+
